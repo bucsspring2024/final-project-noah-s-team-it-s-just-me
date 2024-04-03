@@ -15,7 +15,7 @@ Noah Gallagher
 ## Project Description
 
 I will attempt to make a platformer game similar to Mario (Description for now). New Idea: A piece of bread will attempt to navigate through different biomes to become toast. This piece of bread will need to reach the magical volcano at the end in order to become toast.
-
+ 
 ***    
 
 ## GUI Design

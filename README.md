@@ -2,18 +2,19 @@
 
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 
-# << Project Title >>
-## CS110 Final Project  << Semester, Year >>
+# << Project Title >> Noah's Project (This is my title until I come up with one)
+## CS110 Final Project  << Spring, 2024 >>
 
 ## Team Members
 
-<< List team member names >>
+Noah Gallagher
+
 
 ***
 
 ## Project Description
 
-<< Give an overview of your project >>
+I will attempt to make a platformer game similar to Mario (Description for now). New Idea: A piece of bread will attempt to navigate through different biomes to become toast. This piece of bread will need to reach the magical volcano at the end in order to become toast.
 
 ***    
 
@@ -31,11 +32,11 @@
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. Start Menu
+2. Moveable Character
+3. Obstacle/Enemy Collisions
+4. Scrolling Background
+5. Game Over Screen
 
 ### Classes
 

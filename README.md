@@ -14,8 +14,8 @@ Noah Gallagher
 
 ## Project Description
 
-I will attempt to make a platformer game similar to Mario (Description for now). New Idea: A piece of bread will attempt to navigate through different biomes to become toast. This piece of bread will need to reach the magical volcano at the end in order to become toast.
- 
+A piece of bread will attempt to navigate through different biomes to become toast. This piece of bread will need to reach the magical volcano at the end in order to become toast.
+
 ***    
 
 ## GUI Design
@@ -40,7 +40,9 @@ I will attempt to make a platformer game similar to Mario (Description for now).
 
 ### Classes
 
-- << You should have a list of each of your classes with a description >>
+- Bread: Bread is the movable character in the game. He is able to move left, right, and he can jump... somehow.
+- Obstacle: A multitude of stationary objects will be in the game.
+- Movable Obstacle: Some moving obstacles will also be featured in the game.
 
 ## ATP
 

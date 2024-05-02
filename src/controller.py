@@ -1,4 +1,5 @@
 import pygame
+import random
 from pygame.locals import *
 from src.bread import Bread
 from src.obstacle import Obstacle
@@ -14,11 +15,32 @@ class Controller:
         self.game_over = False
         self.maze = Maze(30, 40)
         self.bread = Bread(0, 0, "assets/bread_image.png")
-        self.obstacle = Obstacle(200, 400, "assets/obstacle_image.png")
-        self.movable_obstacle = MovableObstacle(600, 200, "assets/movable_obstacle_image.png")
         self.font = pygame.font.Font(None, 36)
         self.small_font = pygame.font.Font(None, 24)
         self.timer = 90
+        self.obstacles = pygame.sprite.Group()
+        self.movable_obstacles = pygame.sprite.Group()
+        self.place_obstacles()
+
+    def place_obstacles(self):
+        black_edges = set()
+        for row in range(1, self.maze.rows - 1):
+            for col in range(1, self.maze.cols - 1):
+                if self.maze.maze[row][col] == 1:
+                    if (self.maze.maze[row - 1][col] == 0 or self.maze.maze[row + 1][col] == 0 or
+                        self.maze.maze[row][col - 1] == 0 or self.maze.maze[row][col + 1] == 0):
+                        black_edges.add((col, row))
+        
+        black_edges = list(black_edges)
+        random.shuffle(black_edges)
+        
+        for i in range(25):
+            x, y = black_edges[i]
+            self.obstacles.add(Obstacle(x * 30, y * 25, "assets/obstacle_image.png"))
+        for i in range(25):
+            x, y = black_edges[i + 25]
+            self.movable_obstacles.add(MovableObstacle(x * 30, y * 25, "assets/movable_obstacle_image.png"))
+
 
     def handle_events(self):
         keys = pygame.key.get_pressed()
@@ -27,27 +49,20 @@ class Controller:
                 pygame.quit()
                 quit()
         if keys[K_a]:
-            self.bread.move_left(2)
+            self.bread.move_left(3)
         if keys[K_d]:
-            self.bread.move_right(2)
+            self.bread.move_right(3)
         if keys[K_w]:
             self.bread.jump()
 
     def update(self):
         if not self.game_over:
             self.bread.update()
-            self.movable_obstacle.update()
-            if pygame.sprite.collide_rect(self.bread, self.obstacle) or pygame.sprite.collide_rect(self.bread, self.movable_obstacle):
+            self.movable_obstacles.update()
+            if pygame.sprite.spritecollideany(self.bread, self.obstacles) or pygame.sprite.spritecollideany(self.bread, self.movable_obstacles):
                 self.game_over = True
                 self.toast = False
-            for row in range(self.maze.rows):
-                for col in range(self.maze.cols):
-                    if self.maze.maze[row][col] == 0:
-                        cell_rect = pygame.Rect(col * 30, row * 25, 30, 30)
-                        if cell_rect.colliderect(self.bread.rect):
-                            self.toast = False
-                            return
-                    
+
             fps = self.clock.get_fps()
             if fps == 0:
                 fps = 60
@@ -74,8 +89,8 @@ class Controller:
             self.screen.blit(text, (300, 100))
         else:
             self.screen.blit(self.bread.image, self.bread.rect)
-            self.screen.blit(self.obstacle.image, self.obstacle.rect)
-            self.screen.blit(self.movable_obstacle.image, self.movable_obstacle.rect)
+            self.obstacles.draw(self.screen)
+            self.movable_obstacles.draw(self.screen)
         control_text = self.font.render("W: Jump   A: Left   D: Right", True, 'blue')
         self.screen.blit(control_text, (20, 760))
         pygame.display.flip()

@@ -4,14 +4,15 @@ class Bread(pygame.sprite.Sprite):
     def __init__(self, x, y, image_file):
         super().__init__()
         self.image = pygame.image.load(image_file).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (64, 64))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
         self.velocity_y = 0
         self.gravity = 1
         self.jump_strength = -8
-        self.ground_level = 703  
+        self.ground_level = 703
+        
+        self.rect.inflate_ip(-40, -40)
 
     def jump(self):
         self.velocity_y = self.jump_strength

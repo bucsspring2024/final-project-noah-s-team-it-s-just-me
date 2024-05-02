@@ -2,8 +2,8 @@
 
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 
-# << Project Title >> Noah's Project (This is my title until I come up with one)
-## CS110 Final Project  << Spring, 2024 >>
+# Crusty Crusade: The Quest for Toastination
+## CS110 Final Project - Spring, 2024 
 
 ## Team Members
 
@@ -14,7 +14,7 @@ Noah Gallagher
 
 ## Project Description
 
-A piece of bread will attempt to navigate through different biomes to become toast. This piece of bread will need to reach the magical volcano at the end in order to become toast.
+A piece of bread will attempt to navigate through obstacles to get to the magical Volcano in under a minute in order to become toast!
 
 ***    
 
@@ -45,12 +45,6 @@ A piece of bread will attempt to navigate through different biomes to become toa
 - Movable Obstacle: Some moving obstacles will also be featured in the game.
 
 ## ATP
-    # My Project
-
-    ##ATP
-    
-    ### Test #1
-
 - Test Case 1: Player Movement
     - Test Description: Verify that the bread moves left, right, and can jump as expected.
     - Test Steps:

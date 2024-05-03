@@ -19,7 +19,7 @@ class Bread(pygame.sprite.Sprite):
     
     def get_rect(self):
         new_rect = self.rect.copy()
-        new_rect.inflate_ip(-40, -40)
+        new_rect.inflate_ip(-1, -1)
         return new_rect
         
 

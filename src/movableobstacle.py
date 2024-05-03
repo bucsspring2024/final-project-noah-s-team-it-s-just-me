@@ -8,7 +8,7 @@ class MovableObstacle (pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-        self.rect.inflate_ip(-23, -23)
+        self.rect.inflate_ip(-1, -1)
     
     def move(self, dx, dy):
         self.x += dx

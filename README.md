@@ -60,7 +60,7 @@ Noah Gallagher
     4. Press the 'D' key
     5. Verify that the bread moves right
     6. Press the 'W' key
-    7. Verify that the bread moves up/jumps
+    7. Verify that the bread moves up/jumps (the bread has infinite jumps)
     - Expected Outcome: The player’s bread should move left, right, and up/jump in response to the key inputs
 
 - Test Case 2: Collision Detection
@@ -81,7 +81,7 @@ Noah Gallagher
     3. Verify that you die and the game ends and it says "Game Over!"
     4. Run into the volcano
     5. Verify that you win the game and it says "Toasted!!!"
-    - Expected Outcome: The game should either display "Game Over!" or "Toasted!!!" depending upon which condition you're testing.
+    - Expected Outcome: The game should either display "Game Over!" or "Toasted!!!" depending upon which condition you're testing. (If you're unable to make it to the end, you can jump over the entire maze and fall down to the volcano to check if it says "Toasted!!!" I swear it pops up.)
 
 - Test Case 4: Timer Functionality
     - Test Description: Confirm that the timer functions correctly and triggers the game over condiion when it runs out of time.

@@ -13,6 +13,12 @@ class Bread(pygame.sprite.Sprite):
         self.ground_level = 703
         
         self.rect.inflate_ip(-40, -40)
+    
+    def get_rect(self):
+        new_rect = self.rect.copy()
+        new_rect.inflate_ip(40, 40)
+        return new_rect
+        
 
     def jump(self):
         self.velocity_y = self.jump_strength

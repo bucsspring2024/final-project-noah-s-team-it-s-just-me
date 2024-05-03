@@ -57,7 +57,8 @@ class Controller:
 
     def update(self):
         if not self.game_over:
-            self.bread.update()
+            if not self.maze.fall_collide(self.bread):
+                self.bread.update()
             self.movable_obstacles.update()
             if pygame.sprite.spritecollideany(self.bread, self.obstacles) or pygame.sprite.spritecollideany(self.bread, self.movable_obstacles):
                 self.game_over = True

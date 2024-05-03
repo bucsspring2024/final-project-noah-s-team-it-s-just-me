@@ -26,7 +26,7 @@ Noah Gallagher
 
 ### Final Design
 
-![final gui](assets/finalgui.jpg)
+![final gui](assets/finaldesign.jpg)
 
 ## Program Design
 
@@ -43,12 +43,12 @@ Noah Gallagher
 
 ### Classes
 
-- Controller: The holy grail of this project. It handles user input, interprets that information, communicates with data models to carry out tasks, and handles events. 
-- Bread: Bread is the movable character in the game. He is able to move left, right, and he can jump... somehow. Represents the main sprite in the game which is the playable character. 
+- Controller: The holy grail of this project. It handles user input, interprets that information, communicates with data models to carry out tasks, and handles events.  
+- Bread: Bread is the movable character in the game. He is able to move left, right, and he can jump... somehow. Represents the main sprite in the game which is the playable character. He is also very tiny and spawns in the top right of the map (apologies). This class also contains many attributes for the bread such as jump strength and gravity,
 - Obstacle: A multitude of stationary objects will be in the game. Represented by the butter knife sprite. If you touch it, YOU DIE!!!
 - Movable Obstacle: Represented by the moldy bread sprite (ew). If you touch it, the mold will spread to you and you perish. 
 - Volcano: Represented by the giant volcano sprite. This magical volcano is the ultimate goal. Reach it, and you become the almighty toast!
-- Maze: This labyrinth is randomly generated. Follow its path to the magical volcano.
+- Maze: This labyrinth is randomly generated. Follow its path to the magical volcano. This class randomly generates the maze as well as handles collision protocols.
 
 ## ATP
 - Test Case 1: Player Movement
@@ -59,7 +59,7 @@ Noah Gallagher
     3. Verify that the bread moves left
     4. Press the 'D' key
     5. Verify that the bread moves right
-    6. Press the 'W' key
+    6. Press the 'W' key or hold the 'W' key
     7. Verify that the bread moves up/jumps (the bread has infinite jumps)
     - Expected Outcome: The player’s bread should move left, right, and up/jump in response to the key inputs
 
@@ -97,6 +97,6 @@ Noah Gallagher
     1. Start the game
     2. Observe that the maze is randomly generated every time
     3. Make sure you are able to navigate through the maze to the volcano
-    4. Oberve that the obstacles are randomly generated every time
+    4. Oberve that the obstacles are randomly generated every time. If they're randomly generated in the direction you need to go, better luck next time! Get better rng.
     - Expected Outcome: The randomly generated maze should have a layout which you are able to navigate through and the randomly generated obstacles should be placed throughout the maze.
 

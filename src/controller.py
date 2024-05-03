@@ -33,12 +33,12 @@ class Controller:
         black_edges = list(black_edges)
         random.shuffle(black_edges)
 
-        for i in range(20):
+        for i in range(15):
             x, y = black_edges[i]
-            self.obstacles.add(Obstacle(x * 30, y * 20, "assets/obstacle_image.png"))
-        for i in range(20):
-            x, y = black_edges[i + 20]
-            self.movable_obstacles.add(MovableObstacle(x * 30, y * 20, "assets/movable_obstacle_image.png"))
+            self.obstacles.add(Obstacle(x * 30, y * 15, "assets/obstacle_image.png"))
+        for i in range(15):
+            x, y = black_edges[i + 15]
+            self.movable_obstacles.add(MovableObstacle(x * 30, y * 15, "assets/movable_obstacle_image.png"))
 
     def handle_events(self):
         keys = pygame.key.get_pressed()
@@ -63,7 +63,6 @@ class Controller:
             if pygame.sprite.spritecollideany(self.bread, self.obstacles, collision_check) or pygame.sprite.spritecollideany(self.bread, self.movable_obstacles, collision_check):
                 self.game_over = True
                 self.toast = False
-            if not self.maze.fall_collide(self.bread): self.bread.update()
             self.movable_obstacles.update()
             if pygame.sprite.spritecollideany(self.bread, self.obstacles) or pygame.sprite.spritecollideany(self.bread, self.movable_obstacles):
                 self.game_over, self.toast = True, False
@@ -90,7 +89,13 @@ class Controller:
         end_text = self.small_font.render("End", True, 'green')
         self.screen.blit(end_text, (self.screen.get_width() - end_text.get_width() - 20, self.screen.get_height() - end_text.get_height() - 20))
         minutes, seconds = int(self.timer) // 60, int(self.timer) % 60
-        self.screen.blit(self.font.render(f"Time: {minutes}:{seconds:02}", True, 'blue'), self.font.render(f"Time: {minutes}:{seconds:02}", True, 'blue').get_rect(topright=(self.screen.get_width() - 5, 20)))
+        time_label = self.font.render("Time:", True, 'blue')
+        time_label_rect = time_label.get_rect(topright=(self.screen.get_width() - 5, 20))
+        self.screen.blit(time_label, time_label_rect)
+        time_text = self.font.render(f"{minutes}:{seconds:02}", True, 'blue')
+        time_text_rect = time_text.get_rect(topright=(self.screen.get_width() - 5, time_label_rect.bottom + 5))
+        self.screen.blit(time_text, time_text_rect)
+        
         if self.game_over:
             font_color = 'white' if self.toast else 'red'
             self.screen.blit(self.font.render("Game Over!", True, font_color), (550, 350))

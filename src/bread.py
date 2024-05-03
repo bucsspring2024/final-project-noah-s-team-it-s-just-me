@@ -4,9 +4,7 @@ class Bread(pygame.sprite.Sprite):
     def __init__(self, x, y, image_file):
         super().__init__()
         self.image = pygame.image.load(image_file).convert_alpha()
-        crop = pygame.Surface((16,16))
-        crop.blit(self.image, (0, 0), (8, 8, 16, 16))
-        self.image = crop
+        self.image = pygame.transform.scale(self.image, (8, 8))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -19,7 +17,7 @@ class Bread(pygame.sprite.Sprite):
     
     def get_rect(self):
         new_rect = self.rect.copy()
-        new_rect.inflate_ip(-1, -1)
+        new_rect.inflate_ip(-.25, -.25)
         return new_rect
         
 

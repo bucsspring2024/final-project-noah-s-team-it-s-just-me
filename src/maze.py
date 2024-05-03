@@ -23,29 +23,28 @@ class Maze:
            
     def run_collide(self,object):
             for wall in self.walls:
-                if (wall.top < object.rect.top < wall.bottom) or (wall.top < object.rect.bottom < wall.bottom):
-                    if (wall.left <= object.rect.left <= wall.right):
+                if (wall.top <= object.rect.centery <= wall.bottom): 
+                    if (wall.left < object.rect.left <= wall.right):
                         object.rect.left = wall.right
                         return True
-                    if (wall.left < object.rect.right < wall.right):
+                    if (wall.left <= object.rect.right < wall.right):
                         object.rect.right = wall.left
                         return True
             return False
+    
     def fall_collide(self,object):
             for wall in self.walls:
-                if (wall.top < object.rect.bottom < wall.bottom) and ((wall.left < object.rect.centerx < wall.right)): 
+                if (wall.top <= object.rect.bottom < wall.bottom) and ((wall.left <= object.rect.centerx <= wall.right)): 
                     object.rect.bottom = wall.top
                     return True
             return False
+    
     def jump_collide(self,object):
             for wall in self.walls:
-                if (wall.top < object.rect.top < wall.bottom) and ((wall.left < object.rect.centerx < wall.right)):
+                if (wall.top < object.rect.top <= wall.bottom) and ((wall.left <= object.rect.centerx <= wall.right)):
                     object.rect.top = wall.bottom
                     return True
             return False
-
-
-
 
     def generate_recursive_backtracking(self, row, col):
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]

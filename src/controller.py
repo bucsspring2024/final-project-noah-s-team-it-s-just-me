@@ -51,7 +51,18 @@ class Controller:
         if keys[K_w]: self.bread.jump()
 
     def update(self):
+        def collision_check(object1, object2):
+            return pygame.Rect.colliderect(object1.get_rect(), object2.rect)
+        
         if not self.game_over:
+            self.bread.update()
+            self.maze.fall_collide(self.bread)
+            self.maze.jump_collide(self.bread)
+            self.maze.run_collide(self.bread)
+            self.movable_obstacles.update()
+            if pygame.sprite.spritecollideany(self.bread, self.obstacles, collision_check) or pygame.sprite.spritecollideany(self.bread, self.movable_obstacles, collision_check):
+                self.game_over = True
+                self.toast = False
             if not self.maze.fall_collide(self.bread): self.bread.update()
             self.movable_obstacles.update()
             if pygame.sprite.spritecollideany(self.bread, self.obstacles) or pygame.sprite.spritecollideany(self.bread, self.movable_obstacles):
@@ -59,8 +70,13 @@ class Controller:
             elif pygame.sprite.spritecollideany(self.bread, self.volcano_group):
                 self.game_over, self.toast, self.toasty_visible, self.toasty_timer = True, True, True, self.toasty_duration * 2
             
-            fps = self.clock.get_fps() or 60
+            fps = self.clock.get_fps()
+            if fps == 0:
+                fps = 60
             self.timer -= 1 / fps
+            if self.timer <= 0:
+                self.game_over = True
+                self.timer = 0
             if self.timer <= 0: self.game_over, self.timer = True, 0
             if self.toasty_visible:
                 self.toasty_timer -= 1
@@ -77,7 +93,7 @@ class Controller:
         self.screen.blit(self.font.render(f"Time: {minutes}:{seconds:02}", True, 'blue'), self.font.render(f"Time: {minutes}:{seconds:02}", True, 'blue').get_rect(topright=(self.screen.get_width() - 32, 20)))
         if self.game_over:
             font_color = 'white' if self.toast else 'red'
-            self.screen.blit(self.font.render("Game Over!", True, font_color), (300, 100))
+            self.screen.blit(self.font.render("Game Over!", True, font_color), (550, 350))
             if self.toast:
                 toasty_text = self.font.render("Toasted!!!", True, 'brown')
                 self.screen.fill('black')
